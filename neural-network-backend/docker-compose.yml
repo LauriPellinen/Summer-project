@@ -1,0 +1,16 @@
+version: '3.2'
+
+services:
+
+  website:
+    build: './flask-server'
+    environment:
+      - PORT=5000
+      - FLASK_ENV=development
+    ports:
+      - 5000:5000
+      
+    container_name: "kesaprojekti2022_toinenkone"
+
+    
+    volumes: ['./flask-server:/usr/src/app']

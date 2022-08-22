@@ -1,0 +1,25 @@
+<!-- tämä käyttää aiemmin tehtyä base.html pohjana -->
+{% extends "base.html" %}
+<!-- vaihtaa yläblokin tekstiä -->
+{% block title %} Kotisivu {% endblock %}
+{% block content %}
+<!-- Alla olevalla formilla pystyy lataamaan kuvan palvelimelle. Kyseinen kuva lähtee /uploader osoitteesen, jossa  -->
+<!-- Funktio tekee tarpeelliset toiminnot kuvan vastaanottamiselle. -->
+<html>
+
+<body>
+   <form action="/uploader" method="POST" enctype="multipart/form-data">
+      <input type="file" name="file" />
+      <br>
+      <input type="radio" id="kissa" name="arvo" value=0 checked>
+      <label for="kissa">Kissa</label>
+      <input type="radio" id="Koira" name="arvo" value=1>
+      <label for="Koira">Koira</label><br>
+      <input type="submit" />
+   </form>
+</body>
+
+</html>
+
+
+{% endblock %}

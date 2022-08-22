@@ -1,0 +1,54 @@
+version: '3.2'
+
+# services:
+# # Lisätään nginx, koska se on hyvä olla verkkosivuilla (reverse proxy) t. internet. lisää myös turvallisuutta
+#   nginx:
+#     build:
+#       context: ./nginx 
+#       args:
+#     # hakee .env tiedostosta muuttujat
+#         DOMAIN: ${DOMAIN}
+#         EMAIL: ${EMAIL}
+#         FLASK: application
+#     # portit, mitkä aukastaan
+#     ports:
+#       - "80:80"
+#       - "443:443"
+#     volumes:
+#       - /etc/letsencrypt:/etc/letsencrypt
+#     # käynnistyy siis vasta, kun alla oleva application on käynnistynyt
+#     depends_on:
+#       - application
+# # alla oleva koodi buildaa imagen, käynnistää siis gunicornilla flask apin kolmella workkerilla.
+#   application:
+#     build: ./${APP_FOLDER}
+#     command: gunicorn --bind 0.0.0.0:5000 --workers 3 ${FLASK_APP}:app
+#     environment:
+#       - FLASK_ENV=${FLASK_ENV}
+#     ports:
+#       - 5000:5000
+
+# koska ngninx toi lisähankaluuksia, päätin tähän projektiin, että se ei ole oleellinen. 
+# Webbiserveri luodaan nyt yksinkertaisesti ainoastaan http salauksella, eli portataan se osoitteesta 80 (eli hhtp oletusportti)
+# Sitten vain rakennetaan /website kansion mukainen sovellus
+services:
+
+  website:
+    build: './website'
+    environment:
+      - PORT=8080
+      - FLASK_ENV=development
+    ports:
+      - 80:8080
+      
+    container_name: "kesaprojekti2022"
+
+    
+
+
+
+    volumes: ['./website:/usr/src/app']
+
+ 
+     
+

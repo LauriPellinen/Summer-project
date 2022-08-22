@@ -1,0 +1,59 @@
+<!-- tämä käyttää aiemmin tehtyä base.html pohjana -->
+{% extends "base.html" %}
+<!-- vaihtaa yläblokin tekstiä -->
+{% block title %} Tulokset {% endblock %}
+{% block content %}
+
+<html>
+
+<body>
+   
+   
+   <br>
+ {% if image %}
+   <img src={{image}} style="max-width: 500px; max-height: 500px;"/>
+   
+{% endif %}
+
+<br>
+<br>
+
+{% if result %}
+   
+   <h3  id="result">
+     täähän on muuten selkee {{result}}</h3>
+   
+{% endif %}
+<form action="/retrain" method="get">
+  <button type="submit" class="sbtn btn btn-secondary btn-c" onclick="spinner()">Uudelleenkouluta</button>
+  <br>
+  <p>
+    Varmista, ennen uudelleenkoulutusta, että molemmissa kansioissa (kissa ja koira) on edes yksi kuva uudelleenkouluttamisen toimimiseksi oikein!
+  </p>
+  <div class="loader">
+    <div class="loading">
+    </div>
+  </div>
+    
+  
+</form>
+
+
+
+<form action="/palautus" method="get">
+  <button type="submit" class="sbtn btn btn-secondary btn-c">Palauta</button>
+  <br>
+</form>
+
+
+
+</body>
+
+</html>
+<script type="text/javascript">
+  function spinner() {
+      document.getElementsByClassName("loader")[0].style.display = "block";
+  }
+</script>
+
+{% endblock %}
